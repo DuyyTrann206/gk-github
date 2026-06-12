@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách sự kiện</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">IT Events</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Mở menu điều hướng">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="courses.html">Sự kiện</a></li>
+                        <li class="nav-item"><a class="nav-link" href="register.html">Đăng ký</a></li>
+                        <li class="nav-item"><a class="nav-link" href="registrations.html">Đã đăng ký</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-5">
+        <section class="container">
+            <div class="text-center mb-5">
+                <h1 class="display-6 fw-bold">Danh sách sự kiện</h1>
+                <p class="text-muted">Tìm kiếm và đăng ký tham gia các hội thảo, workshop và hoạt động được tổ chức bởi Khoa CNTT.</p>
+            </div>
+
+            <div class="row gy-3 align-items-center mb-4">
+                <div class="col-md-4"><input type="text" id="search-input" class="form-control" placeholder="Tìm tên sự kiện/khóa học..."></div>
+                <div class="col-md-3"><select id="category-select" class="form-select"><option value="">Tất cả danh mục</option></select></div>
+                <div class="col-md-3"><select id="level-select" class="form-select"><option value="">Tất cả cấp độ</option></select></div>
+                <div class="col-md-2 text-md-end"><button id="btn-reset" type="button" class="btn btn-secondary">Reset</button></div>
+            </div>
+
+            <div id="event-list" class="row g-4"></div>
+        </section>
+    </main>
+
+    <div class="modal fade" id="eventDetailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailsModalLabel">Chi tiết sự kiện</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body" id="detailsModalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <a href="register.html" id="modalRegisterLink" class="btn btn-primary">Đăng ký ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p class="mb-1 fw-bold">Đồ án Giữa kỳ - Lập trình Web Frontend</p>
+            <p class="mb-1">Thực hiện bởi: <strong>Trần Nguyễn Khánh Duy</strong> - Sinh viên năm 2</p>
+            <p class="mb-1">Email: <a href="mailto:itevents@bdcm.edu.vn" class="text-white text-decoration-underline">itevents@bdcm.edu.vn</a> | Hotline: 0912 345 678</p>
+            <p class="mb-0 text-muted small">Ngành Công nghệ thông tin - Trường Đại học Bình Dương Phân hiệu Cà Mau</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
