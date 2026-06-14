@@ -65,33 +65,38 @@ function attachDetailButtons() {
     document.querySelectorAll('.btn-detail').forEach(button => {
         button.addEventListener('click', () => {
             const id = parseInt(button.getAttribute('data-id'), 10);
-            const item = eventsData.find(event => event.id === id);
-            if (!item) return;
-            const modalTitle = document.getElementById('detailsModalLabel');
-            const modalBody = document.getElementById('detailsModalBody');
-            if (modalTitle) modalTitle.textContent = item.title;
-            if (modalBody) {
-                modalBody.innerHTML = `
-                    <div class="mb-3 text-center">
-                        <img src="${item.image}" alt="${item.title}" class="img-fluid rounded shadow-sm" style="max-height: 320px; width: 100%; object-fit: cover;">
-                    </div>
-                    <p><strong>Danh mục:</strong> ${item.category}</p>
-                    <p><strong>Cấp độ:</strong> ${item.level}</p>
-                    <p><strong>Thời gian:</strong> ${formatDate(item.date)}</p>
-                    <p>${item.detail}</p>
-                `;
-            }
-            const modalRegisterLink = document.getElementById('modalRegisterLink');
-            if (modalRegisterLink) {
-                modalRegisterLink.href = `register.html?id=${item.id}`;
-            }
-            const modalElement = document.getElementById('eventDetailsModal');
-            if (modalElement) {
-                const modal = new bootstrap.Modal(modalElement);
-                modal.show();
-            }
+            openEventModalById(id);
         });
     });
+}
+
+function openEventModalById(id) {
+    const item = eventsData.find(event => event.id === id);
+    if (!item) return;
+
+    const modalTitle = document.getElementById('detailsModalLabel');
+    const modalBody = document.getElementById('detailsModalBody');
+    if (modalTitle) modalTitle.textContent = item.title;
+    if (modalBody) {
+        modalBody.innerHTML = `
+            <div class="mb-3 text-center">
+                <img src="${item.image}" alt="${item.title}" class="img-fluid rounded shadow-sm" style="max-height: 320px; width: 100%; object-fit: cover;">
+            </div>
+            <p><strong>Danh mục:</strong> ${item.category}</p>
+            <p><strong>Cấp độ:</strong> ${item.level}</p>
+            <p><strong>Thời gian:</strong> ${formatDate(item.date)}</p>
+            <p>${item.detail}</p>
+        `;
+    }
+    const modalRegisterLink = document.getElementById('modalRegisterLink');
+    if (modalRegisterLink) {
+        modalRegisterLink.href = `register.html?id=${item.id}`;
+    }
+    const modalElement = document.getElementById('eventDetailsModal');
+    if (modalElement) {
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+    }
 }
 
 function filterEvents() {
@@ -285,6 +290,11 @@ function initCoursesPage() {
         createCategoryOptions();
         createLevelOptions();
         renderEvents(eventsData);
+        const params = new URLSearchParams(window.location.search);
+        const selectedId = parseInt(params.get('id'), 10);
+        if (!Number.isNaN(selectedId)) {
+            openEventModalById(selectedId);
+        }
         searchInput?.addEventListener('input', filterEvents);
         categorySelect?.addEventListener('change', filterEvents);
         levelSelect?.addEventListener('change', filterEvents);
